@@ -7,7 +7,6 @@ export const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent
 
   const headers = {
     'Access-Control-Allow-Origin': blocksDomain,
-    'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'GET'
   };
 
