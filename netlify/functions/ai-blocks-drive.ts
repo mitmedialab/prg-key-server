@@ -23,7 +23,6 @@ export const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent
     : {
       statusCode: 400,
       body: "Bad request to key server. If developing locally, opt to use your own, local keys.",
-      headers
     }
 };
 
