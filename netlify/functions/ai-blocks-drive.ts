@@ -10,7 +10,9 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
     'Access-Control-Allow-Methods': 'GET'
   };
 
-  return Origin?.startsWith(blocksDomain)
+  headers['Access-Control-Allow-Origin'] = "*";
+
+  return Origin?.startsWith(blocksDomain) || true
     ? {
       statusCode: 200,
       body: JSON.stringify({
