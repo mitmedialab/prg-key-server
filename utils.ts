@@ -44,6 +44,6 @@ export const obscureTraffic = (passphrase?: string) => {
 
 export const encryptAll = (obj: Record<string, string>, encryption: (text: string) => lib.CipherParams) =>
   Object.entries(obj).reduce((acc, [key, value]) => {
-    acc.push([JSON.stringify(encryption(key).toString()), JSON.stringify(encryption(value).toString())]);
+    acc.push([encryption(key).toString(), encryption(value).toString()]);
     return acc;
   }, [] as [string, string][]);
