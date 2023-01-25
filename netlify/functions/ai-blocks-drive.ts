@@ -9,13 +9,13 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
 
   const CORS = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, session',
     'Access-Control-Allow-Methods': 'GET',
   };
 
   const headers = { ...CORS, 'Content-Type': 'application/json' };
 
-  return Origin?.startsWith(blocksDomain) || true
+  return Origin?.startsWith(blocksDomain)
     ? {
       headers,
       statusCode: 200,
