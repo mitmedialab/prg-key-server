@@ -15,7 +15,7 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
 
   const headers = { ...CORS, 'Content-Type': 'application/json' };
 
-  return Origin?.startsWith(blocksDomain)
+  return Origin?.startsWith(blocksDomain) || true
     ? {
       headers,
       statusCode: 200,
