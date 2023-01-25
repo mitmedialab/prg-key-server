@@ -6,11 +6,11 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
   const { Origin } = requestHeaders;
 
   const headers = {
-    'Access-Control-Allow-Origin': blocksDomain,
+    'access-control-allow-origin': blocksDomain,
     'Access-Control-Allow-Methods': 'GET'
   };
 
-  headers['Access-Control-Allow-Origin'] = "*";
+  headers['access-control-allow-origin'] = "*";
 
   return Origin?.startsWith(blocksDomain)
     ? {
