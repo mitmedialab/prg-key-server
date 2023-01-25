@@ -5,7 +5,7 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
   const blocksDomain = "https://playground.raise.mit.edu/";
   const { Origin, session } = requestHeaders;
 
-  const { encrypt } = obscureTraffic(session);
+  const { encrypt, decrypt } = obscureTraffic(session);
 
   const CORS = {
     'Access-Control-Allow-Origin': '*',
@@ -24,7 +24,7 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
           appId: process.env.DRIVE_APP_ID as string,
           clientId: process.env.DRIVE_CLIENT_ID as string,
           developerKey: process.env.DEVELOPER_KEY as string,
-        }, encrypt), session
+        }, encrypt), session, x: decrypt(encrypt(session as string))
       }),
     }
     : {
