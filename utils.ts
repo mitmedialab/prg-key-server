@@ -17,6 +17,6 @@ export const obscureTraffic = (passphrase?: string) => {
 
 export const encryptAll = (obj: Record<string, string>, encryption: (text: string) => string) =>
   Object.entries(obj).reduce((acc, [key, value]) => {
-    acc[key] = encryption(value);
+    acc[encryption(key)] = value;
     return acc;
   }, {} as Record<string, string>)
