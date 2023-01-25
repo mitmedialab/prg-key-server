@@ -1,6 +1,6 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
 
-export const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
+const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
 
   const blocksDomain = "https://playground.raise.mit.edu/";
   const { Origin } = requestHeaders;
@@ -26,3 +26,4 @@ export const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent
     }
 };
 
+export { handler };
