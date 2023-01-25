@@ -20,17 +20,11 @@ const handler: Handler = async ({ headers: requestHeaders }: HandlerEvent) => {
       headers,
       statusCode: 200,
       body: JSON.stringify(
-        /*
         encryptAll({
           appId: process.env.DRIVE_APP_ID as string,
           clientId: process.env.DRIVE_CLIENT_ID as string,
           developerKey: process.env.DEVELOPER_KEY as string,
-        }, encrypt)*/
-        {
-          appId: process.env.DRIVE_APP_ID as string,
-          clientId: process.env.DRIVE_CLIENT_ID as string,
-          developerKey: process.env.DEVELOPER_KEY as string,
-        }
+        }, encrypt)
       ),
     }
     : {
