@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "allowSyntheticDefaultImports": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -12,6 +12,6 @@
     "noImplicitAny": true,
     "strict": true
   },
-  "include": ["./netlify/functions"],
+  "include": ["./netlify/functions", "endpoints"],
   "exclude": ["node_modules"]
 }

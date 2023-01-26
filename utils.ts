@@ -1,12 +1,13 @@
-import AES from 'crypto-js/aes';
-import Utf8 from 'crypto-js/enc-utf8';
-import Base64 from 'crypto-js/enc-base64';
+import { lib, enc, AES } from 'crypto-js';
 
-import { lib } from 'crypto-js';
+export const functionsURL = "https://prg-key-server.netlify.app/.netlify/functions";
+
+export const makeURLQueryString = <T extends Record<string, string>>(obj: T) =>
+  "?" + Object.entries(obj).map(([key, value]) => `${key}=${value}`).join("&");
 
 const jsonFormatter = {
   stringify: function (cipherParams: lib.CipherParams) {
-    const jsonObj: Record<string, string> = { ct: cipherParams.ciphertext.toString(Base64) };
+    const jsonObj: Record<string, string> = { ct: cipherParams.ciphertext.toString(enc.Base64) };
 
     if (cipherParams.iv) jsonObj.iv = cipherParams.iv.toString();
     if (cipherParams.salt) jsonObj.s = cipherParams.salt.toString();
@@ -16,12 +17,12 @@ const jsonFormatter = {
   parse: function (jsonStr: string) {
     const jsonObj: Record<string, string> = JSON.parse(jsonStr);
 
-    const cipherParams = CryptoJS.lib.CipherParams.create({
-      ciphertext: CryptoJS.enc.Base64.parse(jsonObj.ct)
+    const cipherParams = lib.CipherParams.create({
+      ciphertext: enc.Base64.parse(jsonObj.ct)
     });
 
-    if (jsonObj.iv) cipherParams.iv = CryptoJS.enc.Hex.parse(jsonObj.iv);
-    if (jsonObj.s) cipherParams.salt = CryptoJS.enc.Hex.parse(jsonObj.s);
+    if (jsonObj.iv) cipherParams.iv = enc.Hex.parse(jsonObj.iv);
+    if (jsonObj.s) cipherParams.salt = enc.Hex.parse(jsonObj.s);
 
     return cipherParams;
   }
@@ -35,7 +36,7 @@ export const obscureTraffic = (passphrase?: string) => {
 
   const decrypt = (ciphertext: string) => {
     const bytes = AES.decrypt(ciphertext, passphrase as string, options);
-    const originalText = bytes.toString(Utf8);
+    const originalText = bytes.toString(enc.Utf8);
     return originalText;
   };
 

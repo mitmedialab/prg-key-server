@@ -1,11 +1,12 @@
 import { Handler, HandlerEvent } from "@netlify/functions";
 import { encryptAll, obscureTraffic } from "../../utils";
+import { URLParameters } from "../../endpoints/ai-blocks/drive";
 
 const handler: Handler = async ({ headers: requestHeaders, queryStringParameters }: HandlerEvent) => {
   const blocksDomain = "https://playground.raise.mit.edu/";
   const { Origin } = requestHeaders;
 
-  const { session } = queryStringParameters as { session: string };
+  const { session } = queryStringParameters as URLParameters;
 
   const { encrypt } = obscureTraffic(session);
 
